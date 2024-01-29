@@ -15,12 +15,12 @@ public class JhonMovement : MonoBehaviour
     private float Horizontal;
     private bool Grounded;
     private float LastShoot;
-    private int Health = 5;
+    private int Health = 15;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Obtención de datos de los componentes.
+        // Obtenciï¿½n de datos de los componentes.
         Rigidbody2D = GetComponent<Rigidbody2D>(); 
         Animator = GetComponent<Animator>();
     }
@@ -28,9 +28,9 @@ public class JhonMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Horizontal = Input.GetAxisRaw("Horizontal"); // Obtención de movimiento horizontal del eje X.
+        Horizontal = Input.GetAxisRaw("Horizontal"); // Obtenciï¿½n de movimiento horizontal del eje X.
 
-        // Validación de movimiento en dirección, para cambio de forma de vista de Jhon.
+        // Validaciï¿½n de movimiento en direcciï¿½n, para cambio de forma de vista de Jhon.
         if (Horizontal < 0.0f) transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
         else if (Horizontal > 0.0f) transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
@@ -43,13 +43,13 @@ public class JhonMovement : MonoBehaviour
         }
         else Grounded = false;
 
-        // Validación para ejecución de función de salto
+        // Validaciï¿½n para ejecuciï¿½n de funciï¿½n de salto
         if (Input.GetKeyDown(KeyCode.W) && Grounded)
         {
             Jump();
         }
 
-        // Validación de pulsación para tecla de disparo
+        // Validaciï¿½n de pulsaciï¿½n para tecla de disparo
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > LastShoot + 0.25f)
         {
             Shoot();
@@ -59,7 +59,7 @@ public class JhonMovement : MonoBehaviour
 
     private void Jump()
     {
-        // Al invocar la función, se agrega la "Fuerza" hacia arriba al componente.
+        // Al invocar la funciï¿½n, se agrega la "Fuerza" hacia arriba al componente.
         Rigidbody2D.AddForce(Vector2.up * JumpForce);
     }
 
@@ -69,7 +69,7 @@ public class JhonMovement : MonoBehaviour
         if (transform.localScale.x == 1.0f) direction  = Vector3.right;
         else direction = Vector3.left;
 
-        // Al invocar la función, se modifica el prefab de Bullet para disparar.
+        // Al invocar la funciï¿½n, se modifica el prefab de Bullet para disparar.
         GameObject bullet = Instantiate(BulletPrefab, transform.position + direction * 0.1f, Quaternion.identity);
         bullet.GetComponent<BulletScript>().SetDirection(direction);
     }

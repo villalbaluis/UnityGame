@@ -8,7 +8,7 @@ public class GruntScript : MonoBehaviour
     public GameObject BulletPrefab; // Llamado de la bala.
 
     private float LastShoot;
-    private int Health = 3;
+    private int Health = 8;
 
     private void Update()
     {
@@ -31,7 +31,7 @@ public class GruntScript : MonoBehaviour
         if (transform.localScale.x == 1.0f) direction = Vector3.right;
         else direction = Vector3.left;
 
-        // Al invocar la función, se modifica el prefab de Bullet para disparar.
+        // Al invocar la funciï¿½n, se modifica el prefab de Bullet para disparar.
         GameObject bullet = Instantiate(BulletPrefab, transform.position + direction * 0.1f, Quaternion.identity);
         bullet.GetComponent<BulletScript>().SetDirection(direction);
     }
